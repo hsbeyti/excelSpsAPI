@@ -1,8 +1,16 @@
 [
     {
+        "id": "4e160294c152d662",
+        "type": "tab",
+        "label": "initialize variable",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
         "id": "11484aa47e88b65c",
         "type": "tab",
-        "label": "if SPS sent  a request then read the code",
+        "label": "did SPS sent  a request",
         "disabled": false,
         "info": "",
         "env": []
@@ -18,7 +26,23 @@
     {
         "id": "5a897ab4ae946cbb",
         "type": "tab",
-        "label": "end the call request",
+        "label": "end the call request with ok status",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "34222939a40ed0aa",
+        "type": "tab",
+        "label": "send an with error status",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "5038629d9d1cce0a",
+        "type": "tab",
+        "label": "end transfer  after an error",
         "disabled": false,
         "info": "",
         "env": []
@@ -243,10 +267,106 @@
         "height": 1
     },
     {
+        "id": "0f811561a6d92182",
+        "type": "change",
+        "z": "4e160294c152d662",
+        "name": "reset all global variables",
+        "rules": [
+            {
+                "t": "set",
+                "p": "start",
+                "pt": "global",
+                "to": "false",
+                "tot": "bool"
+            },
+            {
+                "t": "set",
+                "p": "codeReadDone",
+                "pt": "global",
+                "to": "false",
+                "tot": "bool"
+            },
+            {
+                "t": "set",
+                "p": "dataFoundInFile",
+                "pt": "global",
+                "to": "false",
+                "tot": "bool"
+            },
+            {
+                "t": "set",
+                "p": "leseBereit",
+                "pt": "global",
+                "to": "true",
+                "tot": "bool"
+            },
+            {
+                "t": "set",
+                "p": "dataFoundInFile",
+                "pt": "global",
+                "to": "false",
+                "tot": "bool"
+            },
+            {
+                "t": "set",
+                "p": "codeNotFound",
+                "pt": "global",
+                "to": "false",
+                "tot": "bool"
+            },
+            {
+                "t": "set",
+                "p": "errorStatusSend",
+                "pt": "global",
+                "to": "false",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 330,
+        "y": 200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "070f9af00c9c4893",
+        "type": "inject",
+        "z": "4e160294c152d662",
+        "name": "reset all variable once at the start",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 200,
+        "y": 80,
+        "wires": [
+            [
+                "0f811561a6d92182"
+            ]
+        ]
+    },
+    {
         "id": "505c3923e1c157a4",
         "type": "inject",
         "z": "11484aa47e88b65c",
-        "name": "check API call flag from SPS every second",
+        "name": "check start flag from SPS every second",
         "props": [
             {
                 "p": "payload"
@@ -263,8 +383,8 @@
         "topic": "ns=4;i=12;datatype=Boolean",
         "payload": "",
         "payloadType": "date",
-        "x": 270,
-        "y": 160,
+        "x": 260,
+        "y": 100,
         "wires": [
             [
                 "6b26ea9a185ee6fc"
@@ -288,7 +408,7 @@
         "securitypolicy": "None",
         "folderName4PKI": "",
         "name": "Read flag from SPS",
-        "x": 620,
+        "x": 600,
         "y": 160,
         "wires": [
             [
@@ -301,7 +421,7 @@
         "id": "ac62b212b91606cf",
         "type": "change",
         "z": "11484aa47e88b65c",
-        "name": "save call flag in the global variable \"start \"",
+        "name": "save start flag in the global variable \"start \"",
         "rules": [
             {
                 "t": "set",
@@ -316,7 +436,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 680,
+        "x": 690,
         "y": 220,
         "wires": [
             [
@@ -329,9 +449,9 @@
         "type": "comment",
         "z": "11484aa47e88b65c",
         "name": "",
-        "info": "It listen to the SPS CPU start signle \nIt does this by reading every second the flag\nform the  ns=4;i=12;datatype=Boolean OPC UA server interface.\nWhen this flag is true, means we have to respond to the request, by returning the corresponding\nziel for a given code ( that we recieve from the SPS)\nwe save the  value read form SPS in teh global variable \"start\"\nthen we read the code from  ns=4;i=14;datatype=String and\nwe store it in the global variable \"code\"",
-        "x": 180,
-        "y": 100,
+        "info": "It listen to the SPS CPU start signle \nIt does this by reading every second the flag\nform the  ns=4;i=12;datatype=Boolean OPC UA server interface.\nWhen this flag is true and the codeReadDone is false , means we have to respond to the request, by returning the corresponding\nziel for a given code ( that we recieve from the SPS)\nwe save the  flag read form SPS in the  global variable \"start\"\nthen we read the code from  ns=4;i=14;datatype=String and\nwe store it in the global variable \"code\"\n and set codeReadDone to be true ",
+        "x": 140,
+        "y": 40,
         "wires": []
     },
     {
@@ -363,15 +483,15 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 610,
-        "y": 520,
+        "x": 630,
+        "y": 640,
         "wires": []
     },
     {
         "id": "baeb71e041f6c0ac",
         "type": "switch",
         "z": "11484aa47e88b65c",
-        "name": "if the flag is true then",
+        "name": "if the flag is true AND",
         "property": "start",
         "propertyType": "global",
         "rules": [
@@ -386,7 +506,7 @@
         "y": 280,
         "wires": [
             [
-                "5437b6dcc58e1b59"
+                "16a2a95af2d3c2fa"
             ]
         ]
     },
@@ -408,7 +528,7 @@
         "folderName4PKI": "",
         "name": "read  \"code\" from SPS",
         "x": 620,
-        "y": 400,
+        "y": 460,
         "wires": [
             [
                 "4c05d90fa6f0c33a"
@@ -427,7 +547,7 @@
         "finalize": "",
         "libs": [],
         "x": 630,
-        "y": 340,
+        "y": 400,
         "wires": [
             [
                 "8fac49b4b371b36f"
@@ -453,8 +573,36 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 680,
-        "y": 460,
+        "x": 700,
+        "y": 520,
+        "wires": [
+            [
+                "bf98b798c8c1a8b4",
+                "3e3bc4335a1fa929"
+            ]
+        ]
+    },
+    {
+        "id": "bf98b798c8c1a8b4",
+        "type": "change",
+        "z": "11484aa47e88b65c",
+        "name": "set codeReadDone to true",
+        "rules": [
+            {
+                "t": "set",
+                "p": "codeReadDone",
+                "pt": "global",
+                "to": "true",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 650,
+        "y": 580,
         "wires": [
             [
                 "47e843da41325ce1"
@@ -462,18 +610,57 @@
         ]
     },
     {
+        "id": "16a2a95af2d3c2fa",
+        "type": "switch",
+        "z": "11484aa47e88b65c",
+        "name": "if codeReadDone is false",
+        "property": "codeReadDone",
+        "propertyType": "global",
+        "rules": [
+            {
+                "t": "false"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 630,
+        "y": 340,
+        "wires": [
+            [
+                "5437b6dcc58e1b59"
+            ]
+        ]
+    },
+    {
+        "id": "3e3bc4335a1fa929",
+        "type": "debug",
+        "z": "11484aa47e88b65c",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 990,
+        "y": 520,
+        "wires": []
+    },
+    {
         "id": "6b7b0e166e165ee5",
         "type": "file in",
         "z": "d0626ea1c7cffea5",
         "name": "Read data from the file ",
         "filename": "${FILE_NAME}",
-        "format": "lines",
+        "format": "utf8",
         "chunk": false,
         "sendError": false,
         "encoding": "none",
         "allProps": false,
-        "x": 540,
-        "y": 320,
+        "x": 500,
+        "y": 260,
         "wires": [
             [
                 "007b3d2cf1b02c63",
@@ -492,8 +679,8 @@
         "arraySpltType": "len",
         "stream": true,
         "addname": "",
-        "x": 590,
-        "y": 400,
+        "x": 550,
+        "y": 320,
         "wires": [
             [
                 "c9161514b9f54cc5"
@@ -513,8 +700,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 990,
-        "y": 520,
+        "x": 1130,
+        "y": 460,
         "wires": []
     },
     {
@@ -522,18 +709,18 @@
         "type": "function",
         "z": "d0626ea1c7cffea5",
         "name": "extract code and ziel and saved them in msg",
-        "func": "\n\n\n// example of a code ziele pair : 00151201801291302308;000001047445\n// recieved in msg.payload\n// split code form zile\nvar CodeZielePair=msg.payload.split(\";\");\nvar dataCode=CodeZielePair[0];//00151201801291302308\nvar dataZiele=CodeZielePair[1];//000001047445\n//remove \\r from the end of the dataziele\n var temp=dataZiele.split(\"\\r\");\n dataZiele=temp[0];\n // check if code is the code that passed as API call argument\n  msg.code=dataCode;\n   msg.ziel=dataZiele;\nreturn msg;",
+        "func": "\n\n\n// example of a code ziele pair : 00151201801291302308;000001047445\n// recieved in msg.payload\n// split code form zile\nvar CodeZielePair=msg.payload.split(\";\");\nvar dataCode=CodeZielePair[0];//00151201801291302308\nvar dataZiele=CodeZielePair[1];//000001047445\n//remove \\r from the end of the dataziele\n var temp=dataZiele.split(\"\\r\");\n dataZiele=temp[0];\n // check if code is the code that passed as API call argument\n  msg.code=dataCode;\n  msg.ziel=dataZiele;\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
-        "finalize": "",
+        "finalize": "// Code added here will be run when the\n// node is being stopped or re-deployed.\nif(global.get('dataFoundInFile') == false)\n   global.set('codeNotFound',true);",
         "libs": [],
-        "x": 610,
-        "y": 460,
+        "x": 570,
+        "y": 380,
         "wires": [
             [
-                "d404ef47955609ca",
-                "2db01a4130a5f4cb"
+                "2db01a4130a5f4cb",
+                "d21b9112719eb2c7"
             ]
         ]
     },
@@ -543,8 +730,8 @@
         "z": "d0626ea1c7cffea5",
         "name": "Readme",
         "info": "It will be excuted each time an API call request recived form the SPS\nif the \"start\" global variabel is true, means an API call request took place\nwe first read teh data from file an dstor ethem in an HASH mapp\n\n",
-        "x": 160,
-        "y": 140,
+        "x": 120,
+        "y": 20,
         "wires": []
     },
     {
@@ -552,7 +739,7 @@
         "type": "debug",
         "z": "d0626ea1c7cffea5",
         "name": "",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -561,7 +748,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 770,
-        "y": 320,
+        "y": 260,
         "wires": []
     },
     {
@@ -577,19 +764,19 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1170,
-        "y": 740,
+        "x": 790,
+        "y": 1060,
         "wires": []
     },
     {
         "id": "e4e57b9934db8920",
         "type": "change",
         "z": "d0626ea1c7cffea5",
-        "name": "set \"dataReadFromFile\" to true, singanling that is read from file is done and ziel is sent",
+        "name": "set \"dataFoundInFile\" to true, singanling that is read from file is done and ziel is sent",
         "rules": [
             {
                 "t": "set",
-                "p": "dataReadFromFile",
+                "p": "dataFoundInFile",
                 "pt": "global",
                 "to": "true",
                 "tot": "bool"
@@ -600,12 +787,11 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 760,
-        "y": 760,
+        "x": 690,
+        "y": 860,
         "wires": [
             [
-                "4f8ffd46c9aa513a",
-                "4b2b207009d26532"
+                "49da9d3efd0d62b1"
             ]
         ]
     },
@@ -613,7 +799,7 @@
         "id": "5bf2a0a37b4f6406",
         "type": "inject",
         "z": "d0626ea1c7cffea5",
-        "name": "check if there is an API call request",
+        "name": "check if there is an start request",
         "props": [
             {
                 "p": "payload"
@@ -630,8 +816,8 @@
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 170,
-        "y": 200,
+        "x": 200,
+        "y": 80,
         "wires": [
             [
                 "33368dd9b3d9b02c"
@@ -642,7 +828,7 @@
         "id": "33368dd9b3d9b02c",
         "type": "switch",
         "z": "d0626ea1c7cffea5",
-        "name": "if an call was requested by the SPS AND",
+        "name": "if a start was requested by the SPS AND",
         "property": "start",
         "propertyType": "global",
         "rules": [
@@ -654,7 +840,7 @@
         "repair": false,
         "outputs": 1,
         "x": 560,
-        "y": 200,
+        "y": 140,
         "wires": [
             [
                 "69c7eef9e720dede"
@@ -665,8 +851,8 @@
         "id": "69c7eef9e720dede",
         "type": "switch",
         "z": "d0626ea1c7cffea5",
-        "name": "the  \"dataReadFromFile( is false)\" from file is not done",
-        "property": "dataReadFromFile",
+        "name": "the  \"dataFoundInFile( is false)\" from file is not done",
+        "property": "dataFoundInFile",
         "propertyType": "global",
         "rules": [
             {
@@ -676,8 +862,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 600,
-        "y": 260,
+        "x": 590,
+        "y": 200,
         "wires": [
             [
                 "6b7b0e166e165ee5"
@@ -696,17 +882,23 @@
                 "t": "eq",
                 "v": "code",
                 "vt": "global"
+            },
+            {
+                "t": "neq",
+                "v": "code",
+                "vt": "global"
             }
         ],
         "checkall": "true",
         "repair": false,
-        "outputs": 1,
-        "x": 640,
-        "y": 520,
+        "outputs": 2,
+        "x": 600,
+        "y": 440,
         "wires": [
             [
                 "5bddbbc08fb4931b"
-            ]
+            ],
+            []
         ]
     },
     {
@@ -726,11 +918,11 @@
         "securitypolicy": "None",
         "folderName4PKI": "",
         "name": "send zile to SPS",
-        "x": 540,
-        "y": 700,
+        "x": 480,
+        "y": 620,
         "wires": [
             [
-                "e4e57b9934db8920"
+                "919b9ec5defb0d3e"
             ]
         ]
     },
@@ -742,8 +934,8 @@
         "datatype": "String",
         "value": "false",
         "name": "get  ziel  reday",
-        "x": 530,
-        "y": 640,
+        "x": 470,
+        "y": 560,
         "wires": [
             [
                 "814a8e3ee05b2887"
@@ -761,8 +953,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 520,
-        "y": 580,
+        "x": 460,
+        "y": 500,
         "wires": [
             [
                 "da60a0c10db95a16"
@@ -774,7 +966,7 @@
         "type": "debug",
         "z": "d0626ea1c7cffea5",
         "name": "",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -782,12 +974,12 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 570,
-        "y": 960,
+        "x": 870,
+        "y": 800,
         "wires": []
     },
     {
-        "id": "86c47b0a734863d3",
+        "id": "210a0c6b427910a4",
         "type": "OpcUa-Client",
         "z": "d0626ea1c7cffea5",
         "endpoint": "55182065ac22cf83",
@@ -802,30 +994,147 @@
         "securitymode": "None",
         "securitypolicy": "None",
         "folderName4PKI": "",
-        "name": "send lese_bereit(true) to SPS",
-        "x": 610,
-        "y": 880,
+        "name": "send status (false) to SPS",
+        "x": 510,
+        "y": 800,
         "wires": [
             [
-                "cfa7b441672f2d67"
+                "cfa7b441672f2d67",
+                "e4e57b9934db8920"
             ]
         ]
     },
     {
-        "id": "4b2b207009d26532",
+        "id": "ab5d3d5b5ca8f103",
+        "type": "OpcUa-Item",
+        "z": "d0626ea1c7cffea5",
+        "item": "ns=4;i=13",
+        "datatype": "Boolean",
+        "value": "false",
+        "name": "get status ready  (false)",
+        "x": 500,
+        "y": 740,
+        "wires": [
+            [
+                "210a0c6b427910a4"
+            ]
+        ]
+    },
+    {
+        "id": "919b9ec5defb0d3e",
+        "type": "function",
+        "z": "d0626ea1c7cffea5",
+        "name": "signal status ok by sending 0",
+        "func": "msg.payload=false;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 520,
+        "y": 680,
+        "wires": [
+            [
+                "ab5d3d5b5ca8f103"
+            ]
+        ]
+    },
+    {
+        "id": "49da9d3efd0d62b1",
+        "type": "change",
+        "z": "d0626ea1c7cffea5",
+        "name": "set CodenotFound false",
+        "rules": [
+            {
+                "t": "set",
+                "p": "CodenotFound",
+                "pt": "global",
+                "to": "false",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 510,
+        "y": 920,
+        "wires": [
+            [
+                "568fe828e7d6529d"
+            ]
+        ]
+    },
+    {
+        "id": "413c1a6fbddd346f",
+        "type": "OpcUa-Client",
+        "z": "d0626ea1c7cffea5",
+        "endpoint": "55182065ac22cf83",
+        "action": "write",
+        "deadbandtype": "a",
+        "deadbandvalue": 1,
+        "time": 10,
+        "timeUnit": "s",
+        "certificate": "n",
+        "localfile": "",
+        "localkeyfile": "",
+        "securitymode": "None",
+        "securitypolicy": "None",
+        "folderName4PKI": "",
+        "name": "send lese_bereit (true) to sps",
+        "x": 520,
+        "y": 1040,
+        "wires": [
+            [
+                "4f8ffd46c9aa513a"
+            ]
+        ]
+    },
+    {
+        "id": "568fe828e7d6529d",
         "type": "OpcUa-Item",
         "z": "d0626ea1c7cffea5",
         "item": "ns=4;i=16",
         "datatype": "Boolean",
         "value": "true",
         "name": "set lese_bereit true",
-        "x": 570,
-        "y": 820,
+        "x": 490,
+        "y": 980,
         "wires": [
             [
-                "86c47b0a734863d3"
+                "413c1a6fbddd346f"
             ]
         ]
+    },
+    {
+        "id": "d21b9112719eb2c7",
+        "type": "function",
+        "z": "d0626ea1c7cffea5",
+        "name": "check not foudn status",
+        "func": "\nmsg.sataus=  global.get('codeNotFound');\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 920,
+        "y": 380,
+        "wires": [
+            [
+                "d404ef47955609ca"
+            ]
+        ]
+    },
+    {
+        "id": "a19facc4003f7eec",
+        "type": "comment",
+        "z": "d0626ea1c7cffea5",
+        "name": "erro code saved on stop ",
+        "info": "on stop wird die vriable norFOundCode equal true ",
+        "x": 820,
+        "y": 360,
+        "wires": []
     },
     {
         "id": "0999a653371e8118",
@@ -849,7 +1158,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 310,
-        "y": 180,
+        "y": 140,
         "wires": [
             [
                 "1825dfeb237e094b"
@@ -874,7 +1183,7 @@
         "folderName4PKI": "",
         "name": "read flag from SPS",
         "x": 730,
-        "y": 180,
+        "y": 200,
         "wires": [
             [
                 "df8f62c2301230f2"
@@ -888,7 +1197,7 @@
         "name": "",
         "info": "\nif the  lesebreit is false and global.dataReadFromFile is true\nthen sedn start false to SPS signaling the end of teh call request",
         "x": 180,
-        "y": 140,
+        "y": 100,
         "wires": []
     },
     {
@@ -962,7 +1271,7 @@
         "y": 580,
         "wires": [
             [
-                "e24170b4a3d02a7d"
+                "0916162d1d0edb3b"
             ]
         ]
     },
@@ -1005,8 +1314,159 @@
         "id": "554b257f3b5c933b",
         "type": "switch",
         "z": "5a897ab4ae946cbb",
-        "name": "if data readand send is true then",
-        "property": "dataReadFromFile",
+        "name": "if data dataFoundInFilesend is true then",
+        "property": "dataFoundInFile",
+        "propertyType": "global",
+        "rules": [
+            {
+                "t": "true"
+            },
+            {
+                "t": "false"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 840,
+        "y": 380,
+        "wires": [
+            [
+                "194c51fa798913ab"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "e24170b4a3d02a7d",
+        "type": "debug",
+        "z": "5a897ab4ae946cbb",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 810,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "0916162d1d0edb3b",
+        "type": "change",
+        "z": "5a897ab4ae946cbb",
+        "name": "reset all global variables",
+        "rules": [
+            {
+                "t": "set",
+                "p": "start",
+                "pt": "global",
+                "to": "false",
+                "tot": "bool"
+            },
+            {
+                "t": "set",
+                "p": "codeReadDone",
+                "pt": "global",
+                "to": "false",
+                "tot": "bool"
+            },
+            {
+                "t": "set",
+                "p": "dataFoundInFile",
+                "pt": "global",
+                "to": "false",
+                "tot": "bool"
+            },
+            {
+                "t": "set",
+                "p": "leseBereit",
+                "pt": "global",
+                "to": "true",
+                "tot": "bool"
+            },
+            {
+                "t": "set",
+                "p": "dataFoundInFile",
+                "pt": "global",
+                "to": "false",
+                "tot": "bool"
+            },
+            {
+                "t": "set",
+                "p": "codeNotFound",
+                "pt": "global",
+                "to": "false",
+                "tot": "bool"
+            },
+            {
+                "t": "set",
+                "p": "errorStatusSend",
+                "pt": "global",
+                "to": "true",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 810,
+        "y": 640,
+        "wires": [
+            [
+                "e24170b4a3d02a7d"
+            ]
+        ]
+    },
+    {
+        "id": "c7d182fbf75efe62",
+        "type": "inject",
+        "z": "34222939a40ed0aa",
+        "name": "Ask about LeseBreit flag from SPS every second ",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "1",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 370,
+        "y": 260,
+        "wires": [
+            [
+                "09acafb9d4dd0b09"
+            ]
+        ]
+    },
+    {
+        "id": "8f1387204d2276f2",
+        "type": "comment",
+        "z": "34222939a40ed0aa",
+        "name": "",
+        "info": "\nif the  lesebreit is false and global.dataReadFromFile is true\nthen sedn start false to SPS signaling the end of teh call request",
+        "x": 240,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "09acafb9d4dd0b09",
+        "type": "switch",
+        "z": "34222939a40ed0aa",
+        "name": "if codeNotFound is true",
+        "property": "codeNotFound",
         "propertyType": "global",
         "rules": [
             {
@@ -1016,18 +1476,298 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 810,
-        "y": 380,
+        "x": 790,
+        "y": 280,
         "wires": [
             [
-                "194c51fa798913ab"
+                "d98e47ecd38b48be"
             ]
         ]
     },
     {
-        "id": "e24170b4a3d02a7d",
+        "id": "8035b14308fe3bd7",
         "type": "debug",
-        "z": "5a897ab4ae946cbb",
+        "z": "34222939a40ed0aa",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1170,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "f7c0429e0afb0a2a",
+        "type": "OpcUa-Client",
+        "z": "34222939a40ed0aa",
+        "endpoint": "55182065ac22cf83",
+        "action": "write",
+        "deadbandtype": "a",
+        "deadbandvalue": 1,
+        "time": 10,
+        "timeUnit": "s",
+        "certificate": "n",
+        "localfile": "",
+        "localkeyfile": "",
+        "securitymode": "None",
+        "securitypolicy": "None",
+        "folderName4PKI": "",
+        "name": "send status (true= error) to SPS",
+        "x": 850,
+        "y": 520,
+        "wires": [
+            [
+                "8035b14308fe3bd7",
+                "57562f2961f59ed9"
+            ]
+        ]
+    },
+    {
+        "id": "fc0ca9f449717882",
+        "type": "OpcUa-Item",
+        "z": "34222939a40ed0aa",
+        "item": "ns=4;i=13",
+        "datatype": "Boolean",
+        "value": "true",
+        "name": "get status ready  (true means  error)",
+        "x": 840,
+        "y": 440,
+        "wires": [
+            [
+                "f7c0429e0afb0a2a"
+            ]
+        ]
+    },
+    {
+        "id": "d98e47ecd38b48be",
+        "type": "function",
+        "z": "34222939a40ed0aa",
+        "name": "signal status error by sending 1",
+        "func": "msg.payload=true;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 790,
+        "y": 360,
+        "wires": [
+            [
+                "fc0ca9f449717882"
+            ]
+        ]
+    },
+    {
+        "id": "93f1278030fedde6",
+        "type": "OpcUa-Client",
+        "z": "34222939a40ed0aa",
+        "endpoint": "55182065ac22cf83",
+        "action": "write",
+        "deadbandtype": "a",
+        "deadbandvalue": 1,
+        "time": 10,
+        "timeUnit": "s",
+        "certificate": "n",
+        "localfile": "",
+        "localkeyfile": "",
+        "securitymode": "None",
+        "securitypolicy": "None",
+        "folderName4PKI": "",
+        "name": "send lese_bereit (true) to sps",
+        "x": 860,
+        "y": 660,
+        "wires": [
+            [
+                "02eea42b498844d8"
+            ]
+        ]
+    },
+    {
+        "id": "57562f2961f59ed9",
+        "type": "OpcUa-Item",
+        "z": "34222939a40ed0aa",
+        "item": "ns=4;i=16",
+        "datatype": "Boolean",
+        "value": "true",
+        "name": "set lese_bereit true",
+        "x": 830,
+        "y": 600,
+        "wires": [
+            [
+                "93f1278030fedde6"
+            ]
+        ]
+    },
+    {
+        "id": "02eea42b498844d8",
+        "type": "change",
+        "z": "34222939a40ed0aa",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "errorStatusSend",
+                "pt": "global",
+                "to": "true",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 880,
+        "y": 760,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "87d84a697e145714",
+        "type": "inject",
+        "z": "5038629d9d1cce0a",
+        "name": "check every second if an error message sent",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "1",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 380,
+        "y": 120,
+        "wires": [
+            [
+                "8495844474467a13"
+            ]
+        ]
+    },
+    {
+        "id": "8495844474467a13",
+        "type": "switch",
+        "z": "5038629d9d1cce0a",
+        "name": "if errorStatusSend is true and ",
+        "property": "errorStatusSend",
+        "propertyType": "global",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 800,
+        "y": 120,
+        "wires": [
+            [
+                "90533ce66e5795b3"
+            ]
+        ]
+    },
+    {
+        "id": "90533ce66e5795b3",
+        "type": "switch",
+        "z": "5038629d9d1cce0a",
+        "name": "if lese breiet is false and ",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "false"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 810,
+        "y": 200,
+        "wires": [
+            [
+                "99662d20a6fc750f"
+            ]
+        ]
+    },
+    {
+        "id": "5e7d0c2ab31a5c0c",
+        "type": "OpcUa-Client",
+        "z": "5038629d9d1cce0a",
+        "endpoint": "55182065ac22cf83",
+        "action": "write",
+        "deadbandtype": "a",
+        "deadbandvalue": 1,
+        "time": 10,
+        "timeUnit": "s",
+        "certificate": "n",
+        "localfile": "",
+        "localkeyfile": "",
+        "securitymode": "None",
+        "securitypolicy": "None",
+        "folderName4PKI": "",
+        "name": "send \"start\" to SPS",
+        "x": 810,
+        "y": 420,
+        "wires": [
+            [
+                "e8916bef68279eee",
+                "8dbb728d9c405941"
+            ]
+        ]
+    },
+    {
+        "id": "3b51bf9dd08915c1",
+        "type": "OpcUa-Item",
+        "z": "5038629d9d1cce0a",
+        "item": "ns=4;i=12",
+        "datatype": "Boolean",
+        "value": "false",
+        "name": "set \"start\"  to be false",
+        "x": 800,
+        "y": 360,
+        "wires": [
+            [
+                "5e7d0c2ab31a5c0c"
+            ]
+        ]
+    },
+    {
+        "id": "99662d20a6fc750f",
+        "type": "function",
+        "z": "5038629d9d1cce0a",
+        "name": "get \"start\" ready to be false",
+        "func": "msg.payload=false;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 820,
+        "y": 280,
+        "wires": [
+            [
+                "3b51bf9dd08915c1"
+            ]
+        ]
+    },
+    {
+        "id": "e8916bef68279eee",
+        "type": "debug",
+        "z": "5038629d9d1cce0a",
         "name": "",
         "active": true,
         "tosidebar": true,
@@ -1036,9 +1776,76 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 810,
-        "y": 660,
+        "x": 1070,
+        "y": 420,
         "wires": []
+    },
+    {
+        "id": "8dbb728d9c405941",
+        "type": "change",
+        "z": "5038629d9d1cce0a",
+        "name": "reset all global variables",
+        "rules": [
+            {
+                "t": "set",
+                "p": "start",
+                "pt": "global",
+                "to": "false",
+                "tot": "bool"
+            },
+            {
+                "t": "set",
+                "p": "codeReadDone",
+                "pt": "global",
+                "to": "false",
+                "tot": "bool"
+            },
+            {
+                "t": "set",
+                "p": "dataFoundInFile",
+                "pt": "global",
+                "to": "false",
+                "tot": "bool"
+            },
+            {
+                "t": "set",
+                "p": "leseBereit",
+                "pt": "global",
+                "to": "true",
+                "tot": "bool"
+            },
+            {
+                "t": "set",
+                "p": "dataFoundInFile",
+                "pt": "global",
+                "to": "false",
+                "tot": "bool"
+            },
+            {
+                "t": "set",
+                "p": "codeNotFound",
+                "pt": "global",
+                "to": "false",
+                "tot": "bool"
+            },
+            {
+                "t": "set",
+                "p": "errorStatusSend",
+                "pt": "global",
+                "to": "false",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 890,
+        "y": 520,
+        "wires": [
+            []
+        ]
     },
     {
         "id": "aa21a03b36b671ee",
