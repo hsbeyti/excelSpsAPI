@@ -1,1 +1,1630 @@
-[]
+[
+    {
+        "id": "11484aa47e88b65c",
+        "type": "tab",
+        "label": "if SPS sent  a request then read the code",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "d0626ea1c7cffea5",
+        "type": "tab",
+        "label": "read data from file to answer a request",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "5a897ab4ae946cbb",
+        "type": "tab",
+        "label": "end the call request",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "e538af52b4727f50",
+        "type": "tab",
+        "label": "maschien status dashboard",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "55182065ac22cf83",
+        "type": "OpcUa-Endpoint",
+        "endpoint": "${IP_X}",
+        "secpol": "None",
+        "secmode": "None",
+        "none": false,
+        "login": false,
+        "usercert": false,
+        "usercertificate": "",
+        "userprivatekey": ""
+    },
+    {
+        "id": "403215d057ac2a3a",
+        "type": "OpcUa-Endpoint",
+        "endpoint": "${IP_X}",
+        "secpol": "None",
+        "secmode": "None",
+        "none": false,
+        "login": false,
+        "usercert": false,
+        "usercertificate": "",
+        "userprivatekey": ""
+    },
+    {
+        "id": "29aac6db4644a543",
+        "type": "OpcUa-Endpoint",
+        "endpoint": "${IP_X}",
+        "secpol": "None",
+        "secmode": "None",
+        "none": false,
+        "login": false,
+        "usercert": false,
+        "usercertificate": "",
+        "userprivatekey": ""
+    },
+    {
+        "id": "1cb64610926fbb25",
+        "type": "ui_group",
+        "name": "Maschine Status",
+        "tab": "24c0a90e796435ac",
+        "order": 1,
+        "disp": true,
+        "width": 11,
+        "collapse": true,
+        "className": ""
+    },
+    {
+        "id": "24c0a90e796435ac",
+        "type": "ui_tab",
+        "name": "Home",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "4d9aa8d6e4d009a1",
+        "type": "ui_base",
+        "theme": {
+            "name": "theme-light",
+            "lightTheme": {
+                "default": "#0094CE",
+                "baseColor": "#0094CE",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": false,
+                "reset": false
+            },
+            "darkTheme": {
+                "default": "#097479",
+                "baseColor": "#097479",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": false
+            },
+            "customTheme": {
+                "name": "Untitled Theme 1",
+                "default": "#4B7930",
+                "baseColor": "#4B7930",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+            },
+            "themeState": {
+                "base-color": {
+                    "default": "#0094CE",
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-titlebar-backgroundColor": {
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-backgroundColor": {
+                    "value": "#fafafa",
+                    "edited": false
+                },
+                "page-sidebar-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-textColor": {
+                    "value": "#1bbfff",
+                    "edited": false
+                },
+                "group-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "widget-textColor": {
+                    "value": "#111111",
+                    "edited": false
+                },
+                "widget-backgroundColor": {
+                    "value": "#0094ce",
+                    "edited": false
+                },
+                "widget-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "base-font": {
+                    "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+                }
+            },
+            "angularTheme": {
+                "primary": "indigo",
+                "accents": "blue",
+                "warn": "red",
+                "background": "grey",
+                "palette": "light"
+            }
+        },
+        "site": {
+            "name": "Node-RED Dashboard",
+            "hideToolbar": "false",
+            "allowSwipe": "false",
+            "lockMenu": "false",
+            "allowTempTheme": "true",
+            "dateFormat": "DD/MM/YYYY",
+            "sizes": {
+                "sx": 48,
+                "sy": 48,
+                "gx": 6,
+                "gy": 6,
+                "cx": 6,
+                "cy": 6,
+                "px": 0,
+                "py": 0
+            }
+        }
+    },
+    {
+        "id": "d567f79677389e3b",
+        "type": "ui_spacer",
+        "z": "e538af52b4727f50",
+        "name": "spacer",
+        "group": "1cb64610926fbb25",
+        "order": 2,
+        "width": 11,
+        "height": 1
+    },
+    {
+        "id": "92db3cb8e0393d57",
+        "type": "ui_spacer",
+        "z": "e538af52b4727f50",
+        "name": "spacer",
+        "group": "1cb64610926fbb25",
+        "order": 4,
+        "width": 11,
+        "height": 1
+    },
+    {
+        "id": "542226b9162f1695",
+        "type": "ui_spacer",
+        "z": "e538af52b4727f50",
+        "name": "spacer",
+        "group": "1cb64610926fbb25",
+        "order": 6,
+        "width": 11,
+        "height": 1
+    },
+    {
+        "id": "b9fa47c8bcd642da",
+        "type": "ui_spacer",
+        "z": "e538af52b4727f50",
+        "name": "spacer",
+        "group": "1cb64610926fbb25",
+        "order": 8,
+        "width": 11,
+        "height": 1
+    },
+    {
+        "id": "3e491abca81eae76",
+        "type": "ui_spacer",
+        "z": "e538af52b4727f50",
+        "name": "spacer",
+        "group": "1cb64610926fbb25",
+        "order": 10,
+        "width": 11,
+        "height": 1
+    },
+    {
+        "id": "3094c93fccf64c4e",
+        "type": "ui_spacer",
+        "z": "e538af52b4727f50",
+        "name": "spacer",
+        "group": "1cb64610926fbb25",
+        "order": 12,
+        "width": 11,
+        "height": 1
+    },
+    {
+        "id": "505c3923e1c157a4",
+        "type": "inject",
+        "z": "11484aa47e88b65c",
+        "name": "check API call flag from SPS every second",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "1",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "ns=4;i=12;datatype=Boolean",
+        "payload": "",
+        "payloadType": "date",
+        "x": 270,
+        "y": 160,
+        "wires": [
+            [
+                "6b26ea9a185ee6fc"
+            ]
+        ]
+    },
+    {
+        "id": "6b26ea9a185ee6fc",
+        "type": "OpcUa-Client",
+        "z": "11484aa47e88b65c",
+        "endpoint": "403215d057ac2a3a",
+        "action": "read",
+        "deadbandtype": "a",
+        "deadbandvalue": 1,
+        "time": 10,
+        "timeUnit": "s",
+        "certificate": "n",
+        "localfile": "",
+        "localkeyfile": "",
+        "securitymode": "None",
+        "securitypolicy": "None",
+        "folderName4PKI": "",
+        "name": "Read flag from SPS",
+        "x": 620,
+        "y": 160,
+        "wires": [
+            [
+                "ac62b212b91606cf",
+                "a8385e69996734bd"
+            ]
+        ]
+    },
+    {
+        "id": "ac62b212b91606cf",
+        "type": "change",
+        "z": "11484aa47e88b65c",
+        "name": "save call flag in the global variable \"start \"",
+        "rules": [
+            {
+                "t": "set",
+                "p": "start",
+                "pt": "global",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 680,
+        "y": 220,
+        "wires": [
+            [
+                "baeb71e041f6c0ac"
+            ]
+        ]
+    },
+    {
+        "id": "2f34f26a49b11c60",
+        "type": "comment",
+        "z": "11484aa47e88b65c",
+        "name": "",
+        "info": "It listen to the SPS CPU start signle \nIt does this by reading every second the flag\nform the  ns=4;i=12;datatype=Boolean OPC UA server interface.\nWhen this flag is true, means we have to respond to the request, by returning the corresponding\nziel for a given code ( that we recieve from the SPS)\nwe save the  value read form SPS in teh global variable \"start\"\nthen we read the code from  ns=4;i=14;datatype=String and\nwe store it in the global variable \"code\"",
+        "x": 180,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "a8385e69996734bd",
+        "type": "debug",
+        "z": "11484aa47e88b65c",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 930,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "47e843da41325ce1",
+        "type": "debug",
+        "z": "11484aa47e88b65c",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 610,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "baeb71e041f6c0ac",
+        "type": "switch",
+        "z": "11484aa47e88b65c",
+        "name": "if the flag is true then",
+        "property": "start",
+        "propertyType": "global",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 620,
+        "y": 280,
+        "wires": [
+            [
+                "5437b6dcc58e1b59"
+            ]
+        ]
+    },
+    {
+        "id": "8fac49b4b371b36f",
+        "type": "OpcUa-Client",
+        "z": "11484aa47e88b65c",
+        "endpoint": "403215d057ac2a3a",
+        "action": "read",
+        "deadbandtype": "a",
+        "deadbandvalue": 1,
+        "time": 10,
+        "timeUnit": "s",
+        "certificate": "n",
+        "localfile": "",
+        "localkeyfile": "",
+        "securitymode": "None",
+        "securitypolicy": "None",
+        "folderName4PKI": "",
+        "name": "read  \"code\" from SPS",
+        "x": 620,
+        "y": 400,
+        "wires": [
+            [
+                "4c05d90fa6f0c33a"
+            ]
+        ]
+    },
+    {
+        "id": "5437b6dcc58e1b59",
+        "type": "function",
+        "z": "11484aa47e88b65c",
+        "name": "get \"code\" ready to read",
+        "func": "msg.topic=\"ns=4;i=14;datatype=String\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 630,
+        "y": 340,
+        "wires": [
+            [
+                "8fac49b4b371b36f"
+            ]
+        ]
+    },
+    {
+        "id": "4c05d90fa6f0c33a",
+        "type": "change",
+        "z": "11484aa47e88b65c",
+        "name": "then strore it in the global variabel \"code\"",
+        "rules": [
+            {
+                "t": "set",
+                "p": "code",
+                "pt": "global",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 680,
+        "y": 460,
+        "wires": [
+            [
+                "47e843da41325ce1"
+            ]
+        ]
+    },
+    {
+        "id": "6b7b0e166e165ee5",
+        "type": "file in",
+        "z": "d0626ea1c7cffea5",
+        "name": "Read data from the file ",
+        "filename": "${FILE_NAME}",
+        "format": "lines",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 540,
+        "y": 320,
+        "wires": [
+            [
+                "007b3d2cf1b02c63",
+                "9dc84da3b9d91155"
+            ]
+        ]
+    },
+    {
+        "id": "9dc84da3b9d91155",
+        "type": "split",
+        "z": "d0626ea1c7cffea5",
+        "name": "split each line into code and ziel MSG",
+        "splt": "\\n",
+        "spltType": "str",
+        "arraySplt": "1",
+        "arraySpltType": "len",
+        "stream": true,
+        "addname": "",
+        "x": 590,
+        "y": 400,
+        "wires": [
+            [
+                "c9161514b9f54cc5"
+            ]
+        ]
+    },
+    {
+        "id": "d404ef47955609ca",
+        "type": "debug",
+        "z": "d0626ea1c7cffea5",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 990,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "c9161514b9f54cc5",
+        "type": "function",
+        "z": "d0626ea1c7cffea5",
+        "name": "extract code and ziel and saved them in msg",
+        "func": "\n\n\n// example of a code ziele pair : 00151201801291302308;000001047445\n// recieved in msg.payload\n// split code form zile\nvar CodeZielePair=msg.payload.split(\";\");\nvar dataCode=CodeZielePair[0];//00151201801291302308\nvar dataZiele=CodeZielePair[1];//000001047445\n//remove \\r from the end of the dataziele\n var temp=dataZiele.split(\"\\r\");\n dataZiele=temp[0];\n // check if code is the code that passed as API call argument\n  msg.code=dataCode;\n   msg.ziel=dataZiele;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 610,
+        "y": 460,
+        "wires": [
+            [
+                "d404ef47955609ca",
+                "2db01a4130a5f4cb"
+            ]
+        ]
+    },
+    {
+        "id": "9fadeb9d7949a092",
+        "type": "comment",
+        "z": "d0626ea1c7cffea5",
+        "name": "Readme",
+        "info": "It will be excuted each time an API call request recived form the SPS\nif the \"start\" global variabel is true, means an API call request took place\nwe first read teh data from file an dstor ethem in an HASH mapp\n\n",
+        "x": 160,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "007b3d2cf1b02c63",
+        "type": "debug",
+        "z": "d0626ea1c7cffea5",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 770,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "4f8ffd46c9aa513a",
+        "type": "debug",
+        "z": "d0626ea1c7cffea5",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1170,
+        "y": 740,
+        "wires": []
+    },
+    {
+        "id": "e4e57b9934db8920",
+        "type": "change",
+        "z": "d0626ea1c7cffea5",
+        "name": "set \"dataReadFromFile\" to true, singanling that is read from file is done and ziel is sent",
+        "rules": [
+            {
+                "t": "set",
+                "p": "dataReadFromFile",
+                "pt": "global",
+                "to": "true",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 760,
+        "y": 760,
+        "wires": [
+            [
+                "4f8ffd46c9aa513a",
+                "4b2b207009d26532"
+            ]
+        ]
+    },
+    {
+        "id": "5bf2a0a37b4f6406",
+        "type": "inject",
+        "z": "d0626ea1c7cffea5",
+        "name": "check if there is an API call request",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "1",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 170,
+        "y": 200,
+        "wires": [
+            [
+                "33368dd9b3d9b02c"
+            ]
+        ]
+    },
+    {
+        "id": "33368dd9b3d9b02c",
+        "type": "switch",
+        "z": "d0626ea1c7cffea5",
+        "name": "if an call was requested by the SPS AND",
+        "property": "start",
+        "propertyType": "global",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 560,
+        "y": 200,
+        "wires": [
+            [
+                "69c7eef9e720dede"
+            ]
+        ]
+    },
+    {
+        "id": "69c7eef9e720dede",
+        "type": "switch",
+        "z": "d0626ea1c7cffea5",
+        "name": "the  \"dataReadFromFile( is false)\" from file is not done",
+        "property": "dataReadFromFile",
+        "propertyType": "global",
+        "rules": [
+            {
+                "t": "false"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 600,
+        "y": 260,
+        "wires": [
+            [
+                "6b7b0e166e165ee5"
+            ]
+        ]
+    },
+    {
+        "id": "2db01a4130a5f4cb",
+        "type": "switch",
+        "z": "d0626ea1c7cffea5",
+        "name": "check if \"code\" recived is equal to read code form file",
+        "property": "code",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "code",
+                "vt": "global"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 640,
+        "y": 520,
+        "wires": [
+            [
+                "5bddbbc08fb4931b"
+            ]
+        ]
+    },
+    {
+        "id": "814a8e3ee05b2887",
+        "type": "OpcUa-Client",
+        "z": "d0626ea1c7cffea5",
+        "endpoint": "55182065ac22cf83",
+        "action": "write",
+        "deadbandtype": "a",
+        "deadbandvalue": 1,
+        "time": 10,
+        "timeUnit": "s",
+        "certificate": "n",
+        "localfile": "",
+        "localkeyfile": "",
+        "securitymode": "None",
+        "securitypolicy": "None",
+        "folderName4PKI": "",
+        "name": "send zile to SPS",
+        "x": 540,
+        "y": 700,
+        "wires": [
+            [
+                "e4e57b9934db8920"
+            ]
+        ]
+    },
+    {
+        "id": "da60a0c10db95a16",
+        "type": "OpcUa-Item",
+        "z": "d0626ea1c7cffea5",
+        "item": "ns=4;i=15",
+        "datatype": "String",
+        "value": "false",
+        "name": "get  ziel  reday",
+        "x": 530,
+        "y": 640,
+        "wires": [
+            [
+                "814a8e3ee05b2887"
+            ]
+        ]
+    },
+    {
+        "id": "5bddbbc08fb4931b",
+        "type": "function",
+        "z": "d0626ea1c7cffea5",
+        "name": "get ziel ",
+        "func": "msg.payload=msg.ziel;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 520,
+        "y": 580,
+        "wires": [
+            [
+                "da60a0c10db95a16"
+            ]
+        ]
+    },
+    {
+        "id": "cfa7b441672f2d67",
+        "type": "debug",
+        "z": "d0626ea1c7cffea5",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 570,
+        "y": 960,
+        "wires": []
+    },
+    {
+        "id": "86c47b0a734863d3",
+        "type": "OpcUa-Client",
+        "z": "d0626ea1c7cffea5",
+        "endpoint": "55182065ac22cf83",
+        "action": "write",
+        "deadbandtype": "a",
+        "deadbandvalue": 1,
+        "time": 10,
+        "timeUnit": "s",
+        "certificate": "n",
+        "localfile": "",
+        "localkeyfile": "",
+        "securitymode": "None",
+        "securitypolicy": "None",
+        "folderName4PKI": "",
+        "name": "send lese_bereit(true) to SPS",
+        "x": 610,
+        "y": 880,
+        "wires": [
+            [
+                "cfa7b441672f2d67"
+            ]
+        ]
+    },
+    {
+        "id": "4b2b207009d26532",
+        "type": "OpcUa-Item",
+        "z": "d0626ea1c7cffea5",
+        "item": "ns=4;i=16",
+        "datatype": "Boolean",
+        "value": "true",
+        "name": "set lese_bereit true",
+        "x": 570,
+        "y": 820,
+        "wires": [
+            [
+                "86c47b0a734863d3"
+            ]
+        ]
+    },
+    {
+        "id": "0999a653371e8118",
+        "type": "inject",
+        "z": "5a897ab4ae946cbb",
+        "name": "Ask about LeseBreit flag from SPS every second ",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "1",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "ns=4;i=16;datatype=Boolean",
+        "payload": "",
+        "payloadType": "date",
+        "x": 310,
+        "y": 180,
+        "wires": [
+            [
+                "1825dfeb237e094b"
+            ]
+        ]
+    },
+    {
+        "id": "1825dfeb237e094b",
+        "type": "OpcUa-Client",
+        "z": "5a897ab4ae946cbb",
+        "endpoint": "403215d057ac2a3a",
+        "action": "read",
+        "deadbandtype": "a",
+        "deadbandvalue": 1,
+        "time": 10,
+        "timeUnit": "s",
+        "certificate": "n",
+        "localfile": "",
+        "localkeyfile": "",
+        "securitymode": "None",
+        "securitypolicy": "None",
+        "folderName4PKI": "",
+        "name": "read flag from SPS",
+        "x": 730,
+        "y": 180,
+        "wires": [
+            [
+                "df8f62c2301230f2"
+            ]
+        ]
+    },
+    {
+        "id": "def2c2705edd617a",
+        "type": "comment",
+        "z": "5a897ab4ae946cbb",
+        "name": "",
+        "info": "\nif the  lesebreit is false and global.dataReadFromFile is true\nthen sedn start false to SPS signaling the end of teh call request",
+        "x": 180,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "df8f62c2301230f2",
+        "type": "change",
+        "z": "5a897ab4ae946cbb",
+        "name": "set global variable \"leseBereit\" to flag",
+        "rules": [
+            {
+                "t": "set",
+                "p": "leseBereit",
+                "pt": "global",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 810,
+        "y": 260,
+        "wires": [
+            [
+                "8f7fd90529ed266b"
+            ]
+        ]
+    },
+    {
+        "id": "8f7fd90529ed266b",
+        "type": "switch",
+        "z": "5a897ab4ae946cbb",
+        "name": "if lese breiet is false and ",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "false"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 790,
+        "y": 320,
+        "wires": [
+            [
+                "554b257f3b5c933b"
+            ]
+        ]
+    },
+    {
+        "id": "509311c915c03539",
+        "type": "OpcUa-Client",
+        "z": "5a897ab4ae946cbb",
+        "endpoint": "55182065ac22cf83",
+        "action": "write",
+        "deadbandtype": "a",
+        "deadbandvalue": 1,
+        "time": 10,
+        "timeUnit": "s",
+        "certificate": "n",
+        "localfile": "",
+        "localkeyfile": "",
+        "securitymode": "None",
+        "securitypolicy": "None",
+        "folderName4PKI": "",
+        "name": "send \"start\" to SPS",
+        "x": 790,
+        "y": 580,
+        "wires": [
+            [
+                "e24170b4a3d02a7d"
+            ]
+        ]
+    },
+    {
+        "id": "77816b7441b9489f",
+        "type": "OpcUa-Item",
+        "z": "5a897ab4ae946cbb",
+        "item": "ns=4;i=12",
+        "datatype": "Boolean",
+        "value": "false",
+        "name": "set \"start\"  to be false",
+        "x": 780,
+        "y": 500,
+        "wires": [
+            [
+                "509311c915c03539"
+            ]
+        ]
+    },
+    {
+        "id": "194c51fa798913ab",
+        "type": "function",
+        "z": "5a897ab4ae946cbb",
+        "name": "get \"start\" ready to be false",
+        "func": "msg.payload=false;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 800,
+        "y": 440,
+        "wires": [
+            [
+                "77816b7441b9489f"
+            ]
+        ]
+    },
+    {
+        "id": "554b257f3b5c933b",
+        "type": "switch",
+        "z": "5a897ab4ae946cbb",
+        "name": "if data readand send is true then",
+        "property": "dataReadFromFile",
+        "propertyType": "global",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 810,
+        "y": 380,
+        "wires": [
+            [
+                "194c51fa798913ab"
+            ]
+        ]
+    },
+    {
+        "id": "e24170b4a3d02a7d",
+        "type": "debug",
+        "z": "5a897ab4ae946cbb",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 810,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "aa21a03b36b671ee",
+        "type": "inject",
+        "z": "e538af52b4727f50",
+        "name": "Steurung ein End point in SPS",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "1",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "ns=4;i=9;datatype=Boolean",
+        "payloadType": "date",
+        "x": 130,
+        "y": 60,
+        "wires": [
+            [
+                "c3384702328f613c"
+            ]
+        ]
+    },
+    {
+        "id": "c3384702328f613c",
+        "type": "OpcUa-Client",
+        "z": "e538af52b4727f50",
+        "endpoint": "29aac6db4644a543",
+        "action": "read",
+        "deadbandtype": "a",
+        "deadbandvalue": 1,
+        "time": 10,
+        "timeUnit": "s",
+        "certificate": "n",
+        "localfile": "",
+        "localkeyfile": "",
+        "securitymode": "None",
+        "securitypolicy": "None",
+        "folderName4PKI": "",
+        "name": "",
+        "x": 480,
+        "y": 60,
+        "wires": [
+            [
+                "d4feab48beb9fdc8"
+            ]
+        ]
+    },
+    {
+        "id": "ad62f4f690edc7be",
+        "type": "debug",
+        "z": "e538af52b4727f50",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 950,
+        "y": 20,
+        "wires": []
+    },
+    {
+        "id": "d3b318d2b1e005b5",
+        "type": "inject",
+        "z": "e538af52b4727f50",
+        "name": "Auto maschine status End point in SPS",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "1",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "ns=4;i=11;datatype=Boolean",
+        "payloadType": "date",
+        "x": 160,
+        "y": 100,
+        "wires": [
+            [
+                "c3384702328f613c"
+            ]
+        ]
+    },
+    {
+        "id": "73fe2320395f2d27",
+        "type": "inject",
+        "z": "e538af52b4727f50",
+        "name": "Hand maschine status End point in SPS",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "1",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "ns=4;i=10;datatype=Boolean",
+        "payloadType": "date",
+        "x": 160,
+        "y": 140,
+        "wires": [
+            [
+                "c3384702328f613c"
+            ]
+        ]
+    },
+    {
+        "id": "444559ff7457cfd7",
+        "type": "inject",
+        "z": "e538af52b4727f50",
+        "name": "benutzer name End point in SPS",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "1",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "ns=4;i=13;datatype=String",
+        "payloadType": "date",
+        "x": 140,
+        "y": 180,
+        "wires": [
+            [
+                "c3384702328f613c"
+            ]
+        ]
+    },
+    {
+        "id": "61a1fa54cb5d2ab6",
+        "type": "function",
+        "z": "e538af52b4727f50",
+        "name": "get Steurung",
+        "func": "\nmsg.payload=msg.payload[0];\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 830,
+        "y": 120,
+        "wires": [
+            [
+                "19dffb82697a7019"
+            ]
+        ]
+    },
+    {
+        "id": "d4feab48beb9fdc8",
+        "type": "join",
+        "z": "e538af52b4727f50",
+        "name": "Create one messsage out of seven ",
+        "mode": "custom",
+        "build": "array",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "",
+        "count": "7",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "",
+        "reduceFixup": "",
+        "x": 740,
+        "y": 60,
+        "wires": [
+            [
+                "61a1fa54cb5d2ab6",
+                "ad62f4f690edc7be",
+                "07cae95480103199",
+                "add4a078b0a82bbf",
+                "d93f60f54c760ad3",
+                "4973258121de3fcc",
+                "38e4eb74433c136c",
+                "1d86804ae69d74a2"
+            ]
+        ]
+    },
+    {
+        "id": "b0c2c329e3c4f4fc",
+        "type": "inject",
+        "z": "e538af52b4727f50",
+        "name": "Fehler in Maschine End point in SPS",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "1",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "ns=4;i=12;datatype=Boolean",
+        "payloadType": "date",
+        "x": 150,
+        "y": 220,
+        "wires": [
+            [
+                "c3384702328f613c"
+            ]
+        ]
+    },
+    {
+        "id": "891a1a36c6b5e301",
+        "type": "inject",
+        "z": "e538af52b4727f50",
+        "name": "Messewert End point SPS",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "1",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "ns=4;i=15;datatype=number",
+        "payloadType": "date",
+        "x": 120,
+        "y": 260,
+        "wires": [
+            [
+                "c3384702328f613c"
+            ]
+        ]
+    },
+    {
+        "id": "2b885eae42133e0c",
+        "type": "inject",
+        "z": "e538af52b4727f50",
+        "name": "System time in End point SPS",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "1",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "ns=4;i=14;datatype=number",
+        "payloadType": "date",
+        "x": 130,
+        "y": 300,
+        "wires": [
+            [
+                "c3384702328f613c"
+            ]
+        ]
+    },
+    {
+        "id": "07cae95480103199",
+        "type": "function",
+        "z": "e538af52b4727f50",
+        "name": "get Auto",
+        "func": "\nmsg.payload=msg.payload[1];\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 840,
+        "y": 200,
+        "wires": [
+            [
+                "b00ba0b78972ec7c"
+            ]
+        ]
+    },
+    {
+        "id": "add4a078b0a82bbf",
+        "type": "function",
+        "z": "e538af52b4727f50",
+        "name": "get Hand",
+        "func": "\nmsg.payload=msg.payload[2];\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 840,
+        "y": 280,
+        "wires": [
+            [
+                "549a44f9717e9eb4"
+            ]
+        ]
+    },
+    {
+        "id": "5f867577b69b9f9d",
+        "type": "ui_text",
+        "z": "e538af52b4727f50",
+        "group": "1cb64610926fbb25",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Benutzer",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 1100,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "d93f60f54c760ad3",
+        "type": "function",
+        "z": "e538af52b4727f50",
+        "name": "get benutzer",
+        "func": "\nmsg.payload=msg.payload[3];\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 850,
+        "y": 360,
+        "wires": [
+            [
+                "5f867577b69b9f9d"
+            ]
+        ]
+    },
+    {
+        "id": "4973258121de3fcc",
+        "type": "function",
+        "z": "e538af52b4727f50",
+        "name": "get Fehler",
+        "func": "\nmsg.payload=msg.payload[4];\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 860,
+        "y": 440,
+        "wires": [
+            [
+                "f25a76f14ac591b5"
+            ]
+        ]
+    },
+    {
+        "id": "3d354d6ff2407cf4",
+        "type": "ui_text",
+        "z": "e538af52b4727f50",
+        "group": "1cb64610926fbb25",
+        "order": 13,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Messwert",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 1100,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "38e4eb74433c136c",
+        "type": "function",
+        "z": "e538af52b4727f50",
+        "name": "get Messwert",
+        "func": "\nmsg.payload=msg.payload[5];\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 870,
+        "y": 520,
+        "wires": [
+            [
+                "3d354d6ff2407cf4"
+            ]
+        ]
+    },
+    {
+        "id": "4e742562ebe9183b",
+        "type": "ui_text",
+        "z": "e538af52b4727f50",
+        "group": "1cb64610926fbb25",
+        "order": 11,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "System Time",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 1110,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "1d86804ae69d74a2",
+        "type": "moment",
+        "z": "e538af52b4727f50",
+        "name": "hh:mm:ss",
+        "topic": "",
+        "input": "payload.timestamp",
+        "inputType": "msg",
+        "inTz": "Europe/Berlin",
+        "adjAmount": 0,
+        "adjType": "days",
+        "adjDir": "add",
+        "format": "",
+        "locale": "de-DE",
+        "output": "",
+        "outputType": "msg",
+        "outTz": "Europe/Berlin",
+        "x": 880,
+        "y": 580,
+        "wires": [
+            [
+                "4e742562ebe9183b"
+            ]
+        ]
+    },
+    {
+        "id": "19dffb82697a7019",
+        "type": "ui_led",
+        "z": "e538af52b4727f50",
+        "order": 7,
+        "group": "1cb64610926fbb25",
+        "width": 0,
+        "height": 0,
+        "label": "Steurung",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#ff0000",
+                "value": "false",
+                "valueType": "bool"
+            },
+            {
+                "color": "#008000",
+                "value": "true",
+                "valueType": "bool"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showGlow": true,
+        "name": "Steurung",
+        "x": 1100,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "b00ba0b78972ec7c",
+        "type": "ui_led",
+        "z": "e538af52b4727f50",
+        "order": 3,
+        "group": "1cb64610926fbb25",
+        "width": 0,
+        "height": 0,
+        "label": "Auto",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#ff0000",
+                "value": "false",
+                "valueType": "bool"
+            },
+            {
+                "color": "#008000",
+                "value": "true",
+                "valueType": "bool"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showGlow": true,
+        "name": "Auto",
+        "x": 1090,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "549a44f9717e9eb4",
+        "type": "ui_led",
+        "z": "e538af52b4727f50",
+        "order": 5,
+        "group": "1cb64610926fbb25",
+        "width": 0,
+        "height": 0,
+        "label": "Hand",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#ff0000",
+                "value": "false",
+                "valueType": "bool"
+            },
+            {
+                "color": "#008000",
+                "value": "true",
+                "valueType": "bool"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showGlow": true,
+        "name": "Hand",
+        "x": 1120,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "f25a76f14ac591b5",
+        "type": "ui_led",
+        "z": "e538af52b4727f50",
+        "order": 9,
+        "group": "1cb64610926fbb25",
+        "width": 0,
+        "height": 0,
+        "label": "Fehler",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#ff0000",
+                "value": "true",
+                "valueType": "bool"
+            },
+            {
+                "color": "#008000",
+                "value": "false",
+                "valueType": "bool"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showGlow": true,
+        "name": "Fehler",
+        "x": 1120,
+        "y": 440,
+        "wires": []
+    }
+]
