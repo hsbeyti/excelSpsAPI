@@ -1,0 +1,19 @@
+version: "3.9"
+services:
+  node-red:
+    image: hsbeyti/indaus:latest
+    container_name: excelOut1
+    networks:
+         - mysql-bridge
+    volumes:
+        -  /home/ftpexcel/data:/data/db
+    ports:
+      - "1880:1880"
+    restart: unless-stopped
+
+
+networks:
+  mysql-bridge:
+    name: bridgeAll
+    driver: bridge
+
