@@ -1,5 +1,5 @@
 industy PC config:
 user:indaus
-password:123456
+password:
 PC order number:  1158247
 OS: Linux Server 20
